@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "vite build",
-    "dev": "vite --host 0.0.0.0 --port 3002 --clearScreen false",
+    "build": "pnpm --filter legacy build && pnpm vite:build",
+    "dev": "concurrently --names \"legacy,bootstrap\" \"pnpm --filter legacy dev\" \"pnpm vite:dev\"",
+    "vite:dev": "vite --host 0.0.0.0 --port 3002 --clearScreen false",
+    "vite:build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "legacy": "workspace:*",
+    "modern": "workspace:*",
     "react": "18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -15,6 +19,8 @@
     "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.14",
     "@vitejs/plugin-react": "^4.1.0",
+    "concurrently": "^8.2.1",
+    "tsconfig": "workspace:*",
     "vite": "^4.5.0",
     "vite-plugin-checker": "^0.6.2"
   }

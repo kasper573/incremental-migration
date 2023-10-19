@@ -1,3 +1,3 @@
 export function Modern() {
-  return <h1>Modern App</h1>;
+  return <h1>Modern App OK</h1>;
 }
